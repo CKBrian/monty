@@ -24,7 +24,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 	if (i == 3)
 	{
 		fprintf(stderr, "%d: unknown instruction %s\n", ln, opc);
-		free_stack(data_lib->stack);
+		free_stack(*(data_lib->stack));
 		fclose(data_lib->file);
 		free(data_lib);
 		exit(EXIT_FAILURE);
