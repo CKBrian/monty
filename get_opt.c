@@ -3,10 +3,9 @@
  * get_opc - returns the function corresponding to the opcode
  * @opc: opecode
  * @ln: line number
- * @s: stack pointer
  * Return: function pointer
  */
-void (*get_opc(stack_t *s, char *opc, int ln))(stack_t **stack, unsigned int line_number)
+void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t optn[] = {
 		{"push", push_stack},
@@ -25,8 +24,7 @@ void (*get_opc(stack_t *s, char *opc, int ln))(stack_t **stack, unsigned int lin
 	if (i == 3)
 	{
 		fprintf(stderr, "%d: unknown instruction %s\n", ln, opc);
-		free_stack(s);
-		data_lib->stack = NULL;
+		free_stack(data_lib->stack);
 		fclose(data_lib->file);
 		free(data_lib);
 		exit(EXIT_FAILURE);

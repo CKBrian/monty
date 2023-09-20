@@ -43,7 +43,7 @@ int main(int ac, char **av)
 			arg = strtok(NULL, " ");
 			/*printf("opc-> %s arg->%s\n", opc, arg);*/
 			opc_sorter(arg);
-			(*get_opc(stack, opc, (int)ln))(&stack, ln);
+			(*get_opc(opc, (int)ln))(&stack, ln);
 			opc = strtok(NULL, " ");
 		}
 	}
