@@ -29,6 +29,7 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	data_lib = malloc(sizeof(access_d));
+	data_lib->stack = &stack;
 	data_lib->file = file;
 	if (data_lib == NULL)
 		exit(EXIT_FAILURE);
@@ -41,7 +42,6 @@ int main(int ac, char **av)
 		while (opc)
 		{
 			arg = strtok(NULL, " ");
-			/*printf("opc-> %s arg->%s\n", opc, arg);*/
 			opc_sorter(arg);
 			(*get_opc(opc, (int)ln))(&stack, ln);
 			opc = strtok(NULL, " ");

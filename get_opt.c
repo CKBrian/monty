@@ -10,21 +10,22 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 	instruction_t optn[] = {
 		{"push", push_stack},
 		{"pall", print_stack},
+		{"pint", pint_stack},
 		{"pop", pop_stack},
 	};
 	int i = 0;
 
-	while (i < 3)
+	while (i < 4)
 	{
-		/*printf("--%s--%s-\n", opc, optn[i].opcode);*/
 		if (strcmp(opc, optn[i].opcode) == 0)
 			return (optn[i].f);
 		i++;
 	}
-	if (i == 3)
+	if (i == 4)
 	{
 		fprintf(stderr, "%d: unknown instruction %s\n", ln, opc);
-		free_stack(*(data_lib->stack));
+		if (*(data_lib->stack))
+			free_stack(*(data_lib->stack));
 		fclose(data_lib->file);
 		free(data_lib);
 		exit(EXIT_FAILURE);
