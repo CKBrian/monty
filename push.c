@@ -17,18 +17,10 @@ void push_stack(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	newnode->n = globvalue;
-	if (*stack == NULL)
-	{
-		newnode->next = NULL;
-		newnode->prev = NULL;
-		*stack = newnode;
-	}
-	else
-	{
-		while (temp->next)
-			temp = temp->next;
-		newnode->next = temp->next;
-		temp->next = newnode;
-		newnode->prev = temp;
-	}
+	newnode->prev = NULL;
+	newnode->next = *stack;
+
+	if (*stack)
+		temp->prev = newnode;
+	*stack = newnode;
 }
