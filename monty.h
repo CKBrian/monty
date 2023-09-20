@@ -43,6 +43,7 @@ typedef struct instruction_s
  * struct data_access - data for the stack and queues
  * @value: data for to push
  * @pushErr: flag that check for push arguments
+ * @file: file opened in current session
  */
 typedef struct data_access
 {
@@ -57,7 +58,7 @@ int _getline(char **str, int *size, int fdo);
 void print_stack(stack_t **stack, unsigned int line_number);
 void push_stack(stack_t **stack, unsigned int line_number);
 void pop_stack(stack_t **stack, unsigned int line_number);
-void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number);
+void (*get_opc(stack_t *s, char *opc, int ln))(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 
 #endif /* MONTY_H */
