@@ -61,6 +61,8 @@ void pint_stack(stack_t **stack, unsigned int line_number);
 void swap_stack(stack_t **stack, unsigned int line_number);
 void push_stack(stack_t **stack, unsigned int line_number);
 void pop_stack(stack_t **stack, unsigned int line_number);
+void nop_stack(stack_t **stack, unsigned int line_number);
+void add_stack(stack_t **stack, unsigned int line_number);
 void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 

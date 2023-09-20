@@ -12,17 +12,19 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		{"pall", print_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
+		{"nop", nop_stack},
+		{"add", add_stack},
 		{"swap", swap_stack},
 	};
 	int i = 0;
 
-	while (i < 5)
+	while (i < 7)
 	{
 		if (strcmp(opc, optn[i].opcode) == 0)
 			return (optn[i].f);
 		i++;
 	}
-	if (i == 5)
+	if (i == 7)
 	{
 		fprintf(stderr, "%d: unknown instruction %s\n", ln, opc);
 		if (*(data_lib->stack))
