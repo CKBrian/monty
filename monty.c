@@ -22,6 +22,7 @@ int main(int ac, char **av)
 	if (file == NULL)
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 	data_lib = malloc(sizeof(access_d));
+	data_lib->file = file;
 	if (data_lib == NULL)
 		exit(EXIT_FAILURE);
 
@@ -29,9 +30,13 @@ int main(int ac, char **av)
 	{
 		tok = strtok(buf, " \n");
 		tok1 = strtok(NULL, " \n");
-		if (tok1 == NULL)
-			tok1 = "\0";
-		data_lib->value = atoi(tok1);
+		if (tok1 == NULL || !(tok1[0] >= '0' && tok1[0] <= '9'))
+			data_lib->pushErr = 1;
+		else
+		{
+			data_lib->pushErr = 0;
+			data_lib->value = atoi(tok1);
+		}
 		ln++;
 		(*get_opc(tok, (int)ln))(&stack, ln);
 	}

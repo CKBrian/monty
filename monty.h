@@ -42,10 +42,13 @@ typedef struct instruction_s
 /**
  * struct data_access - data for the stack and queues
  * @value: data for to push
+ * @pushErr: flag that check for push arguments
  */
 typedef struct data_access
 {
 	int value;
+	int pushErr;
+	FILE *file;
 
 } access_d;
 
