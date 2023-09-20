@@ -6,7 +6,7 @@
  * @av: array of string arguments
  * Return: 0 always
  */
-int globvalue;
+access_d *data_lib;
 int main(int ac, char **av)
 {
 	char *tok, *tok1, buf[1024];
@@ -21,6 +21,9 @@ int main(int ac, char **av)
 	file = fopen(av[1], "r");
 	if (file == NULL)
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+	data_lib = malloc(sizeof(access_d));
+	if (data_lib == NULL)
+		exit(EXIT_FAILURE);
 
 	while (fgets(buf, sizeof(buf), file))
 	{
@@ -28,12 +31,13 @@ int main(int ac, char **av)
 		tok1 = strtok(NULL, " \n");
 		if (tok1 == NULL)
 			tok1 = "\0";
-		globvalue = atoi(tok1);
+		data_lib->value = atoi(tok1);
 		ln++;
 		(*get_opc(tok, (int)ln))(&stack, ln);
 	}
 
-	free(stack);
+	free(data_lib);
+	free_stack(stack);
 	fclose(file);
 	return (0);
 

@@ -8,7 +8,6 @@
 #include <stddef.h>
 #include <string.h>
 
-extern int globvalue;
 /*STRUCTS*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,10 +39,22 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct data_access - data for the stack and queues
+ * @value: data for to push
+ */
+typedef struct data_access
+{
+	int value;
+
+} access_d;
+
+extern access_d *data_lib;
 int _getline(char **str, int *size, int fdo);
 void print_stack(stack_t **stack, unsigned int line_number);
 void push_stack(stack_t **stack, unsigned int line_number);
 void pop_stack(stack_t **stack, unsigned int line_number);
 void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
 
 #endif /* MONTY_H */
