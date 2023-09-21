@@ -21,7 +21,7 @@ void pchar_stack(stack_t **stack, unsigned int line_number)
 
 	ascii_value = temp->n;
 
-	if (ascii_value < 0 || ascii_value > 127)
+	if (ascii_value < 32 || ascii_value > 126)
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		free_stack(*stack);
