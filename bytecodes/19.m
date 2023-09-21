@@ -1,4 +1,6 @@
 #grhfuihiu
 #uuftyfttrdrdrddrd
-push 127
-pchar
+push 66
+push 128
+push 82
+pstr
