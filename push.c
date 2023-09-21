@@ -8,15 +8,6 @@
 void push_stack(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newnode, *temp = *stack;
-	char *token = NULL;
-
-	if (!token || (!isdigit(*token) && (*token != '-' && !isdigit(*(token + 1)))))
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	data_lib->value = atoi(token);
 
 	newnode = malloc(sizeof(stack_t));
 	if (newnode == NULL)
