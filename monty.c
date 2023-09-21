@@ -39,6 +39,8 @@ int main(int ac, char **av)
 		ln++;
 		linetok = strtok(buf, "\n");
 		opc = strtok(linetok, " ");
+		if (opc[0] == '#')
+			continue;
 		while (opc)
 		{
 			arg = strtok(NULL, " ");
@@ -52,7 +54,6 @@ int main(int ac, char **av)
 	free_stack(stack);
 	fclose(file);
 	return (0);
-
 }
 /**
  * opc_sorter - sorts args into data_lib struct
