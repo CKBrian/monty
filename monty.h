@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <stddef.h>
 #include <string.h>
+#include <ctype.h>
 
 /*STRUCTS*/
 /**
