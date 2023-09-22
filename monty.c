@@ -88,12 +88,21 @@ int main(int ac, char **av)
  */
 void opc_sorter(char *arg)
 {
+	int i, non_int = 0;
 
-	if (arg == NULL || !(arg[0] >= '0' && arg[0] <= '9'))
-		data_lib->pushErr = 1;
-	else
+	for(i = 0; arg != NULL && arg[i] != '\0'; i++)
+	{
+		if (!(arg[i] == '-' || (arg[i] >= '0' && arg[i] <= '9')))
+			non_int = 1;
+	}
+	if (arg != NULL && ((arg[0] == '-' && (arg[1] >= '0' && arg[1] <= '9')) ||
+		(arg[0] >= '0' && arg[0] <= '9')) && non_int == 0)
 	{
 		data_lib->pushErr = 0;
 		data_lib->value = atoi(arg);
+	}
+	else
+	{
+		data_lib->pushErr = 1;
 	}
 }

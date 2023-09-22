@@ -32,7 +32,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 	}
 	if (i == 13 && opc)
 	{
-		fprintf(stderr, "%d: unknown instruction %s\n", ln, opc);
+		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
 		if (*(data_lib->stack))
 			free_stack(*(data_lib->stack));
 		fclose(data_lib->file);
