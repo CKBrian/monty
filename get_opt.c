@@ -9,6 +9,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t optn[] = {
 		{"push", push_stack},
+		{"Push", push_stack},
 		{"pall", print_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
@@ -26,7 +27,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 
 	while (i < 13)
 	{
-		if (strcmp(opc, optn[i].opcode) == 0)
+		if (opc != NULL && strcmp(opc, optn[i].opcode) == 0)
 			return (optn[i].f);
 		i++;
 	}

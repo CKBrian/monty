@@ -32,5 +32,4 @@ void pchar_stack(stack_t **stack, unsigned int line_number)
 
 	putchar(ascii_value);
 	putchar('\n');
-		
 }

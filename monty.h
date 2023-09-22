@@ -52,6 +52,7 @@ typedef struct data_access
 	int pushErr;
 	FILE *file;
 	stack_t **stack;
+	int comment;
 
 } access_d;
 

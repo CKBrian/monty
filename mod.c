@@ -20,7 +20,7 @@ void mod_stack(stack_t **stack, unsigned int line_number)
 	}
 	first = (*stack)->n;
 	if (first == 0)
-	{		
+	{
 		fprintf(stderr, "L%d: division by zero\n", line_number);
 		free_stack(*stack);
 		fclose(data_lib->file);
