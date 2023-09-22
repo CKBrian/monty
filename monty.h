@@ -45,6 +45,7 @@ typedef struct instruction_s
  * @value: data for to push
  * @pushErr: flag that check for push arguments
  * @file: file opened in current session
+ * @stack: stack pointer
  */
 typedef struct data_access
 {
@@ -52,7 +53,6 @@ typedef struct data_access
 	int pushErr;
 	FILE *file;
 	stack_t **stack;
-	int comment;
 
 } access_d;
 

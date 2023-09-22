@@ -10,7 +10,7 @@ void opc_sorter(char *arg);
  */
 int main(int ac, char **av)
 {
-	char *linetok, *opc, *arg/*, *arg2*/, buf[1024];
+	char *linetok, *opc, *arg, *arg2, buf[1024];
 	FILE *file;
 	unsigned int ln = 0;
 	stack_t *stack = NULL;
@@ -44,26 +44,34 @@ int main(int ac, char **av)
 		while (opc != NULL)
 		{
 			arg = strtok(NULL, " ");
-			/**
-			*if (arg != NULL && strcmp(arg, "push") == 0)
-			*{
-			*	opc_sorter(arg);
-			*	(*get_opc(opc, (int)ln))(&stack, ln);
-			*	arg2 = strtok(NULL, " ");
-			*	opc_sorter(arg2);
-			*	(*get_opc(arg, (int)ln))(&stack, ln);
-			*}
-			*else
-			*/
-			/*{*/
+
+			if (arg != NULL && strcmp(arg, "push") == 0)
+			{
 				opc_sorter(arg);
+				if (opc == NULL || opc[0] == '#')
+					break;
+				(*get_opc(opc, (int)ln))(&stack, ln);
+				arg2 = strtok(NULL, " ");
+				opc_sorter(arg2);
+				if (arg == NULL || arg[0] == '#')
+					break;
+				(*get_opc(arg, (int)ln))(&stack, ln);
+			}
+			else
+
+			{
+				opc_sorter(arg);
+				if (opc == NULL || opc[0] == '#')
+					break;
 				(*get_opc(opc, (int)ln))(&stack, ln);
 				if (opc != NULL && strcmp(opc, "push") != 0)
 				{
+					if (arg == NULL || arg[0] == '#')
+						break;
 					(*get_opc(arg, (int)ln))(&stack, ln);
 				}
 
-			/*}*/
+			}
 			opc = strtok(NULL, " ");
 		}
 	}

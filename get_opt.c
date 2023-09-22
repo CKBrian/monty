@@ -30,7 +30,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 			return (optn[i].f);
 		i++;
 	}
-	if (i == 13)
+	if (i == 13 && opc)
 	{
 		fprintf(stderr, "%d: unknown instruction %s\n", ln, opc);
 		if (*(data_lib->stack))
