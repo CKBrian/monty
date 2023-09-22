@@ -9,7 +9,6 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t optn[] = {
 		{"push", push_stack},
-		{"Push", push_stack},
 		{"pall", print_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
