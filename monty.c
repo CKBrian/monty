@@ -90,7 +90,7 @@ void opc_sorter(char *arg)
 {
 	int i, non_int = 0;
 
-	for(i = 0; arg != NULL && arg[i] != '\0'; i++)
+	for (i = 0; arg != NULL && arg[i] != '\0'; i++)
 	{
 		if (!(arg[i] == '-' || (arg[i] >= '0' && arg[i] <= '9')))
 			non_int = 1;

@@ -22,15 +22,17 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		{"pstr", pstr_stack},
 		{"swap", swap_stack},
 	};
-	int i = 0;
+	int i = 0, unknown = 0;
 
 	while (i < 13)
 	{
 		if (opc != NULL && strcmp(opc, optn[i].opcode) == 0)
 			return (optn[i].f);
+		if (strncmp(opc, optn[i].opcode, strlen(optn[i].opcode)) == 0)
+			unknown = 1;
 		i++;
 	}
-	if (i == 13 && opc)
+	if (i == 13 && opc && unknown == 1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
 		if (*(data_lib->stack))
@@ -39,5 +41,5 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		free(data_lib);
 		exit(EXIT_FAILURE);
 	}
-	return (NULL);
+	return (optn[4].f);
 }
