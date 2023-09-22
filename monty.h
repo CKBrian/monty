@@ -46,6 +46,7 @@ typedef struct instruction_s
  * @pushErr: flag that check for push arguments
  * @file: file opened in current session
  * @stack: stack pointer
+ * @history: keeps tabs of previous non command words
  */
 typedef struct data_access
 {
@@ -53,6 +54,7 @@ typedef struct data_access
 	int pushErr;
 	FILE *file;
 	stack_t **stack;
+	int history;
 
 } access_d;
 

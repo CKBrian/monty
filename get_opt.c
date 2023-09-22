@@ -27,11 +27,16 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 	while (i < 13)
 	{
 		if (opc != NULL && strcmp(opc, optn[i].opcode) == 0)
+		{
+			if (strcmp(opc, "pall") != 0)
+				data_lib->history = 0;
 			return (optn[i].f);
+		}
 		if (strncmp(opc, optn[i].opcode, strlen(optn[i].opcode)) == 0)
 			unknown = 1;
 		i++;
 	}
+	data_lib->history = 1;
 	if (i == 13 && opc && unknown == 1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);

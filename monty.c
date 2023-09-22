@@ -38,6 +38,7 @@ int main(int ac, char **av)
 	{
 		ln++;
 		linetok = strtok(buf, "\n");
+		data_lib->history = 0;
 		opc = strtok(linetok, " ");
 		if (opc && opc[0] == '#')
 			continue;
