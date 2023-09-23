@@ -46,7 +46,8 @@ typedef struct instruction_s
  * @pushErr: flag that check for push arguments
  * @file: file opened in current session
  * @stack: stack pointer
- * @history: keeps tabs of previous non command words
+ * @history: keeps track of previous non command words
+ * @queue: keeps track of the linked list if its a queue or otherwise
  */
 typedef struct data_access
 {
@@ -55,6 +56,7 @@ typedef struct data_access
 	FILE *file;
 	stack_t **stack;
 	int history;
+	int queue;
 
 } access_d;
 
@@ -75,7 +77,11 @@ void nop_stack(stack_t **stack, unsigned int line_number);
 void add_stack(stack_t **stack, unsigned int line_number);
 void rotl_stack(stack_t **stack, unsigned int line_number);
 void rotr_stack(stack_t **stack, unsigned int line_number);
+void to_queue(stack_t **stack, unsigned int line_number);
+void to_stack(stack_t **stack, unsigned int line_number);
 void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
+void inverter(stack_t **stack, unsigned int line_number);
+stack_t *add_queue_end(stack_t **head, int n);
 
 #endif /* MONTY_H */

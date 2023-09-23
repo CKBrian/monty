@@ -21,12 +21,14 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		{"mod", mod_stack},
 		{"sub", sub_stack},
 		{"pchar", pchar_stack},
+		{"queue", to_queue},
+		{"stack", to_stack},
 		{"pstr", pstr_stack},
 		{"swap", swap_stack},
 	};
 	int i = 0, unknown = 0;
 
-	while (i < 15)
+	while (i < 17)
 	{
 		if (opc != NULL && strcmp(opc, optn[i].opcode) == 0)
 		{
@@ -39,7 +41,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		i++;
 	}
 	data_lib->history = 1;
-	if (i == 15 && opc && unknown == 1)
+	if (i == 17 && opc && unknown == 1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
 		if (*(data_lib->stack))

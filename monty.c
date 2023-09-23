@@ -33,6 +33,7 @@ int main(int ac, char **av)
 	data_lib->file = file;
 	if (data_lib == NULL)
 		exit(EXIT_FAILURE);
+	data_lib->queue = 0;
 
 	while (fgets(buf, sizeof(buf), file))
 	{
