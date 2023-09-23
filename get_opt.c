@@ -8,11 +8,13 @@
 void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t optn[] = {
+		{"nop", nop_stack},
 		{"push", push_stack},
 		{"pall", print_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
-		{"nop", nop_stack},
+		{"rotl", rotl_stack},
+		{"rotr", rotr_stack},
 		{"add", add_stack},
 		{"mul", mul_stack},
 		{"div", div_stack},
@@ -24,7 +26,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 	};
 	int i = 0, unknown = 0;
 
-	while (i < 13)
+	while (i < 15)
 	{
 		if (opc != NULL && strcmp(opc, optn[i].opcode) == 0)
 		{
@@ -37,7 +39,7 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		i++;
 	}
 	data_lib->history = 1;
-	if (i == 13 && opc && unknown == 1)
+	if (i == 15 && opc && unknown == 1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opc);
 		if (*(data_lib->stack))
@@ -46,5 +48,5 @@ void (*get_opc(char *opc, int ln))(stack_t **stack, unsigned int line_number)
 		free(data_lib);
 		exit(EXIT_FAILURE);
 	}
-	return (optn[4].f);
+	return (optn[0].f);
 }
